@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "661166625334",
+    "firebase_url": "https://good-food-mobile-default-rtdb.firebaseio.com",
+    "project_id": "good-food-mobile",
+    "storage_bucket": "good-food-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661166625334:android:45a55edcc895f0ddac7e97",
+        "android_client_info": {
+          "package_name": "com.example.good_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661166625334-9b8ha0gtqn4j292l629f5tplft2isugg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOEKvbhjWTrX0ulUIQ4ObVWg-sIZ0tg_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661166625334-9b8ha0gtqn4j292l629f5tplft2isugg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661166625334:android:99d6722e9af735c1ac7e97",
+        "android_client_info": {
+          "package_name": "com.example.good_food_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661166625334-9b8ha0gtqn4j292l629f5tplft2isugg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOEKvbhjWTrX0ulUIQ4ObVWg-sIZ0tg_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661166625334-9b8ha0gtqn4j292l629f5tplft2isugg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
