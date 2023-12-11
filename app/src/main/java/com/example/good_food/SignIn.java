@@ -34,7 +34,7 @@ public class SignIn extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             user = mAuth.getCurrentUser();
-            if(user.getEmail().toString().equals("sirine@gmail.com")){
+            if(user.getEmail().toString().equals("manarzaghouani4@gmail.com")){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
             finish();}
@@ -90,7 +90,7 @@ public class SignIn extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(),"Login succeful",Toast.LENGTH_SHORT).show();
                                     user = mAuth.getCurrentUser();
-                                    if(user.getEmail().toString().equals("sirine@gmail.com")){
+                                    if(user.getEmail().toString().equals("manarzaghouani4@gmail.com")){
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
                                     finish();

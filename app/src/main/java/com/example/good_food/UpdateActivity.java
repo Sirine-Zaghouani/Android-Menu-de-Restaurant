@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -114,26 +115,71 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
     }
-    public void updateData(){
+    public void updateData() {
         title = updateTitle.getText().toString().trim();
         desc = updateDesc.getText().toString().trim();
         Price = updatePrice.getText().toString();
+
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(desc) || TextUtils.isEmpty(Price)) {
+            Toast.makeText(UpdateActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         DataClass dataClass = new DataClass(title, desc, Price, imageUrl);
-        databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.setValue(dataClass)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            deleteOldImage();
+                            showToastAndFinish("Updated");
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        showToast("Update failed: " + e.getMessage());
+                    }
+                });
+    }
+
+    private void deleteOldImage() {
+        if (oldImageURL != null) {
+            StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
+            reference.delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Image deleted successfully
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showToast("Failed to delete old image: " + e.getMessage());
+                        }
+                    });
+        }
+    }
+
+    private void showToastAndFinish(String message) {
+        runOnUiThread(new Runnable() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
-                    reference.delete();
-                    Toast.makeText(UpdateActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UpdateActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            public void run() {
+                Toast.makeText(UpdateActivity.this, message, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
+
+    private void showToast(String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(UpdateActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
